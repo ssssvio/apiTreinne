@@ -10,9 +10,12 @@ import {
   Put,
   Res,
 } from '@nestjs/common';
+import { CarsService } from './cars.service';
 
 @Controller('cars')
 export class CarsController {
+  constructor(private readonly carsService: CarsService) {}
+
   @Get()
   findAll(@Res() response) {
     return response.status(200).json({ message: 'Listagem de carros' });
