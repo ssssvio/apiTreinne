@@ -18,7 +18,7 @@ export class CarsController {
 
   @Get()
   findAll(@Res() response) {
-    return response.status(200).json({ message: 'Listagem de carros' });
+    return response.status(200).json({ message: 'Listagem de carrosel' });
   }
 
   @Get(':id/:car')
