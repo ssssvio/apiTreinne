@@ -1,14 +1,14 @@
 import {
-  Body,
+  // Body,
   Controller,
-  Delete,
+  // Delete,
   Get,
-  HttpCode,
-  HttpStatus,
-  Param,
-  Post,
-  Put,
-  Res,
+  // HttpCode,
+  // HttpStatus,
+  // Param,
+  // Post,
+  // Put,
+  // Res,
 } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { Car } from './shared/cars';
@@ -22,26 +22,26 @@ export class CarsController {
     return await this.carsService.findAll();
   }
 
-  @Get(':id/:car')
-  findOne(@Param('id') id: string, @Param('car') car: string) {
-    return `Carro é o ${car} ano ${id}`;
-  }
+  // @Get(':id/:car')
+  // findOne(@Param('id') id: string, @Param('car') car: string) {
+  //   return `Carro é o ${car} ano ${id}`;
+  // }
 
-  @Post()
-  create(@Body() body: any) {
-    return body;
-  }
+  // @Post()
+  // create(@Body() body: any) {
+  //   return body;
+  // }
 
-  @Put(':id')
-  updade(@Param('id') id: string, @Res() response: any, @Body() body: any) {
-    return response
-      .status(200)
-      .json({ message: `Carro com id ${id} atualizado`, body });
-  }
+  // @Put(':id')
+  // updade(@Param('id') id: string, @Res() response: any, @Body() body: any) {
+  //   return response
+  //     .status(200)
+  //     .json({ message: `Carro com id ${id} atualizado`, body });
+  // }
 
-  @HttpCode(HttpStatus.NO_CONTENT)
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return `Carro com id ${id} deletado`;
-  }
+  // @HttpCode(HttpStatus.NO_CONTENT)
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return `Carro com id ${id} deletado`;
+  // }
 }

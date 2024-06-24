@@ -10,7 +10,7 @@ export class CarsService {
     return this.carRepository.find();
   }
 
-  async create(car: Car): Promise<Car> {
-    return this.carRepository.save(car);
-  }
+  // async create(car: Car): Promise<Car> {
+  //   return this.carRepository.save(car);
+  // }
 }
