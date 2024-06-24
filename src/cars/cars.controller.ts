@@ -11,14 +11,15 @@ import {
   Res,
 } from '@nestjs/common';
 import { CarsService } from './cars.service';
+import { Car } from './shared/cars';
 
 @Controller('cars')
 export class CarsController {
   constructor(private readonly carsService: CarsService) {}
 
   @Get()
-  findAll(@Res() response) {
-    return response.status(200).json({ message: 'Listagem de carrosel' });
+  async findAll(): Promise<Car[]> {
+    return await this.carsService.findAll();
   }
 
   @Get(':id/:car')

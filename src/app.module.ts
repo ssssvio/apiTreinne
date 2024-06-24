@@ -1,8 +1,13 @@
 import { Module } from '@nestjs/common';
-import { AppModuleCars } from './cars/app.module';
+import { CarsModule } from './cars/cars.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmConfigService } from './config/database/typeorm.factory';
 
 @Module({
-  imports: [AppModuleCars],
+  imports: [
+    TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
+    CarsModule,
+  ],
   controllers: [],
   providers: [],
 })
