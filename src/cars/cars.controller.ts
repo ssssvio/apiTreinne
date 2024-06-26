@@ -1,47 +1,45 @@
 import {
-  // Body,
+  Body,
   Controller,
-  // Delete,
+  Delete,
   Get,
-  // HttpCode,
-  // HttpStatus,
-  // Param,
-  // Post,
-  // Put,
-  // Res,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Post,
+  Put,
 } from '@nestjs/common';
-import { CarsService } from './cars.service';
-import { Car } from './shared/cars';
 
+import { CarsService } from './cars.service';
 @Controller('cars')
 export class CarsController {
   constructor(private readonly carsService: CarsService) {}
 
   @Get()
-  async findAll(): Promise<Car[]> {
-    return await this.carsService.findAll();
+  findAll() {
+    return this.carsService.findAll();
   }
 
-  // @Get(':id/:car')
-  // findOne(@Param('id') id: string, @Param('car') car: string) {
-  //   return `Carro é o ${car} ano ${id}`;
-  // }
+  @Get(':id')
+  findOne(@Param('id') id: number) {
+    return this.carsService.find(+id);
+  }
 
-  // @Post()
-  // create(@Body() body: any) {
-  //   return body;
-  // }
+  @Post()
+  create(@Body() body) {
+    this.carsService.create(body);
+    return body;
+  }
 
-  // @Put(':id')
-  // updade(@Param('id') id: string, @Res() response: any, @Body() body: any) {
-  //   return response
-  //     .status(200)
-  //     .json({ message: `Carro com id ${id} atualizado`, body });
-  // }
+  @Put(':id')
+  updade(@Param('id') id: number, @Body() body) {
+    this.carsService.update(+id, body);
+    return;
+  }
 
-  // @HttpCode(HttpStatus.NO_CONTENT)
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return `Carro com id ${id} deletado`;
-  // }
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @Delete(':id')
+  remove(@Param('id') id: number) {
+    return this.carsService.delete(+id);
+  }
 }
