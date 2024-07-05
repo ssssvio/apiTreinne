@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Carr } from './shared/cars';
+import { Car } from './shared/cars';
 
 @Injectable()
 export class CarsService {
-  private cars: Carr[] = [
+  private cars: Car[] = [
     {
       id: 1,
       name: 'Car1',
@@ -45,11 +45,11 @@ export class CarsService {
     return index;
   }
 
-  create(car: Carr) {
+  create(car: Car) {
     this.cars.push(car);
   }
 
-  update(id: number, car: Carr) {
+  update(id: number, car: Car) {
     const index = this.cars.findIndex((car) => car.id === id);
     this.cars[index] = car;
   }
