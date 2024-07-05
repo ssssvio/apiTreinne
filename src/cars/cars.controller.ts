@@ -10,7 +10,7 @@ import {
   Put,
 } from '@nestjs/common';
 
-import { Car } from './shared/cars';
+import { CreateCarDTO } from './dto/create-car';
 import { CarsService } from './cars.service';
 
 @Controller('cars')
@@ -28,13 +28,13 @@ export class CarsController {
   }
 
   @Post()
-  create(@Body() car: Car) {
+  create(@Body() car: CreateCarDTO) {
     this.carsService.create(car);
     return car;
   }
 
   @Put(':id')
-  updade(@Param('id') id: number, @Body() car: Car) {
+  updade(@Param('id') id: number, @Body() car: CreateCarDTO) {
     this.carsService.update(+id, car);
     return;
   }

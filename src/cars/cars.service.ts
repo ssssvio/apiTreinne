@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Car } from './shared/cars';
+import { CreateCarDTO } from './dto/create-car';
 
 @Injectable()
 export class CarsService {
-  private cars: Car[] = [
+  private cars: CreateCarDTO[] = [
     {
       id: 1,
       name: 'Car1',
@@ -45,11 +45,11 @@ export class CarsService {
     return index;
   }
 
-  create(car: Car) {
+  create(car: CreateCarDTO) {
     this.cars.push(car);
   }
 
-  update(id: number, car: Car) {
+  update(id: number, car: CreateCarDTO) {
     const index = this.cars.findIndex((car) => car.id === id);
     this.cars[index] = car;
   }

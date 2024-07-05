@@ -1,6 +1,6 @@
 import { IsBoolean, IsNumber, IsString } from 'class-validator';
 
-export class Car {
+export class CreateCarDTO {
   @IsNumber()
   readonly id: number;
 
