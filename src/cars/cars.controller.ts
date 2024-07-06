@@ -24,7 +24,7 @@ export class CarsController {
 
   @Get(':id')
   findOne(@Param('id') id: number) {
-    return this.carsService.find(+id);
+    return this.carsService.find(id);
   }
 
   @Post()
@@ -35,13 +35,13 @@ export class CarsController {
 
   @Put(':id')
   updade(@Param('id') id: number, @Body() car: CreateCarDTO) {
-    this.carsService.update(+id, car);
+    this.carsService.update(id, car);
     return;
   }
 
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')
   remove(@Param('id') id: number) {
-    return this.carsService.delete(+id);
+    return this.carsService.delete(id);
   }
 }
