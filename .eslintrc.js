@@ -8,7 +8,8 @@ module.exports = {
   plugins: ['@typescript-eslint/eslint-plugin'],
   extends: [
     'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
+    'prettier',
+    'prettier/@typescript-eslint',
   ],
   root: true,
   env: {
@@ -27,5 +28,7 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    // Desativar a regra de espaçamento de chaves do ESLint que conflita com o Prettier
+    'object-curly-spacing': 'off',
   },
 };
