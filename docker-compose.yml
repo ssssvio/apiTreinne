@@ -1,5 +1,6 @@
 version: '3.8'
 
+name: mssql-server
 services:
   db:
     build: .
