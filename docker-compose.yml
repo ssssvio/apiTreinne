@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    build: .
+    container_name: locavia-db
+    restart: always
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Java70script@
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./src/config/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql
+      - sqlvolume:/var/opt/mssql
+
+volumes:
+  sqlvolume:
