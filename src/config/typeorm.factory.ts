@@ -7,7 +7,6 @@ import { Cars } from 'src/cars/entities/cars.entity';
 @Injectable()
 export class TypeOrmConfig implements TypeOrmOptionsFactory {
   constructor(private configService: ConfigService) { }
-
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
       type: 'mssql',
