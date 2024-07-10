@@ -15,7 +15,7 @@ import { CarsService } from './cars.service';
 
 @Controller('cars')
 export class CarsController {
-  constructor(private readonly carsService: CarsService) {}
+  constructor(private readonly carsService: CarsService) { }
 
   @Get()
   findAll() {
@@ -24,7 +24,7 @@ export class CarsController {
 
   @Get(':id')
   findOne(@Param('id') id: number) {
-    return this.carsService.find(id);
+    return this.carsService.findOne(id);
   }
 
   @Post()
@@ -42,6 +42,6 @@ export class CarsController {
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')
   remove(@Param('id') id: number) {
-    return this.carsService.delete(id);
+    return this.carsService.remove(id);
   }
 }

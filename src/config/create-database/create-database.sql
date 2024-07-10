@@ -1,8 +1,6 @@
 CREATE DATABASE car_rental_db;
-GO
 
 USE car_rental_db;
-GO
 
 CREATE TABLE cars (
     id INT PRIMARY KEY IDENTITY(1,1),
@@ -12,4 +10,3 @@ CREATE TABLE cars (
     mileage INT NOT NULL,
     rented BIT NOT NULL
 );
-GO

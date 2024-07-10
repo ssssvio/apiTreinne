@@ -1,7 +1,13 @@
 import 'dotenv/config';
 import { TypeOrmOptionsFactory, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { Cars } from 'src/cars/entities/cars.entity';
 
-export class TypeOrmConfigService implements TypeOrmOptionsFactory {
+@Injectable()
+export class TypeOrmConfig implements TypeOrmOptionsFactory {
+  constructor(private configService: ConfigService) { }
+
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
       type: 'mssql',
@@ -12,7 +18,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       database: process.env.TYPEORM_DATABASE,
       synchronize: true,
       logging: true,
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      entities: [Cars],
       migrations: [__dirname + '/migrations/*{.ts,.js}'],
       subscribers: [],
       extra: {
