@@ -35,8 +35,7 @@ export class CarsController {
 
   @Put(':id')
   updade(@Param('id') id: number, @Body() car: CreateCarDTO) {
-    this.carsService.update(id, car);
-    return;
+    return this.carsService.update(id, car);
   }
 
   @HttpCode(HttpStatus.NO_CONTENT)

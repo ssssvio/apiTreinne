@@ -2,9 +2,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Cars } from './entities/cars.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateCarDTO } from './dto/create-car';
-import { UpdateCarDTO } from './dto/update-car';
-
 @Injectable()
 export class CarsService {
   constructor(
@@ -30,6 +27,10 @@ export class CarsService {
   }
 
   async update(id: number, UpdateCarDTO: any) {
+    const car = await this.findOne(id);
+    if (!car) {
+      throw new NotFoundException(`Car #${id} not found`);
+    }
     const carToUpdate = await this.carsRepository.preload({
       ...UpdateCarDTO,
       id,
