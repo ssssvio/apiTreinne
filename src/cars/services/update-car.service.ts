@@ -16,7 +16,14 @@ export class UpdateCarsService {
     const car = await this.findCarsService.findOne(id);
     if (!car) {
       throw new NotFoundException(`Car #${id} not found`);
-    }
+    };
+
+    const currentUserData = JSON.stringify(car);
+    const newUserData = JSON.stringify({ ...car, ...UpdateCarDTO });
+    if (currentUserData === newUserData) {
+      return car;
+    };
+
     const carToUpdate = await this.carsRepository.preload({
       ...UpdateCarDTO,
       id,
