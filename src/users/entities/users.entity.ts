@@ -14,4 +14,10 @@ export class Users {
   @Column()
   password: string;
 
+  @Column()
+  role: string;  // Exemplo: 'admin', 'employee', 'manager'
+
+  @Column('simple-array')
+  permissions: string[];  // Exemplo: ['view_cars', 'rent_car', 'manage_users']
+
 }
