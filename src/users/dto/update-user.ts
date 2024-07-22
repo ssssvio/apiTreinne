@@ -1,8 +1,8 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { IsNumber } from 'class-validator';
-import { CreateCarDTO } from './create-car';
+import { CreateUserDTO } from './create-user';
 
-export class UpdateUsersDTO extends PartialType(CreateCarDTO) {
+export class UpdateCarDTO extends PartialType(CreateUserDTO) {
   @IsNumber()
   readonly id: number;
 }

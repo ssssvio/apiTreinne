@@ -5,26 +5,18 @@ import { Repository } from 'typeorm';
 import { FindUsersService } from './find-users.service';
 
 @Injectable()
-export class UpdateUsersService {
+export class DeleteUsersService {
   constructor(
     @InjectRepository(Users)
     private readonly usersRepository: Repository<Users>,
     private readonly findUserService: FindUsersService,
   ) { }
 
-  async update(id: number, UpdateUserDTO: any) {
-    const user = await this.findUserService.findOne(id);
-    if (!user) {
+  async remove(id: number) {
+    const userToRemove = await this.findUserService.findOne(id);
+    if (!userToRemove) {
       throw new NotFoundException(`User #${id} not found`);
     }
-    const userToUpdate = await this.usersRepository.preload({
-      ...UpdateUserDTO,
-      id,
-    });
-    if (!userToUpdate) {
-      throw new NotFoundException(`User #${id} not found`);
-    }
-    return this.usersRepository.save(userToUpdate);
+    return this.usersRepository.remove(userToRemove);
   }
-
 }
