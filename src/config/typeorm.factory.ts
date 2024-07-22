@@ -3,6 +3,7 @@ import { TypeOrmOptionsFactory, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Cars } from 'src/cars/entities/cars.entity';
+import { Users } from 'src/users/entities/users.entity';
 
 @Injectable()
 export class TypeOrmConfig implements TypeOrmOptionsFactory {
@@ -17,7 +18,7 @@ export class TypeOrmConfig implements TypeOrmOptionsFactory {
       database: process.env.TYPEORM_DATABASE,
       synchronize: true,
       logging: true,
-      entities: [Cars],
+      entities: [Cars, Users],
       migrations: [__dirname + '/migrations/*{.ts,.js}'],
       subscribers: [],
       extra: {
