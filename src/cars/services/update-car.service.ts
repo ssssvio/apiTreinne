@@ -3,6 +3,7 @@ import { Repository } from 'typeorm';
 import { Cars } from '../entities/cars.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindCarsService } from './find-car.service';
+import { UpdateCarDTO } from '../dto/update-car';
 
 @Injectable()
 export class UpdateCarsService {
@@ -12,26 +13,27 @@ export class UpdateCarsService {
     private readonly findCarsService: FindCarsService,
   ) { }
 
-  async update(id: number, UpdateCarDTO: any) {
+  async update(id: number, updateCarDTO: UpdateCarDTO) {
     const car = await this.findCarsService.findOne(id);
     if (!car) {
       throw new NotFoundException(`Car #${id} not found`);
     };
 
     const currentUserData = JSON.stringify(car);
-    const newUserData = JSON.stringify({ ...car, ...UpdateCarDTO });
+    const newUserData = JSON.stringify({ ...car, ...updateCarDTO });
     if (currentUserData === newUserData) {
       return car;
     };
 
     const carToUpdate = await this.carsRepository.preload({
-      ...UpdateCarDTO,
+      ...updateCarDTO,
       id,
     });
     if (!carToUpdate) {
       throw new NotFoundException(`Car #${id} not found`);
     }
-    return this.carsRepository.save(carToUpdate);
+    this.carsRepository.save(carToUpdate);
+    return;
   };
 
 };

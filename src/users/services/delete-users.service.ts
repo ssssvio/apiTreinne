@@ -17,6 +17,7 @@ export class DeleteUsersService {
     if (!userToRemove) {
       throw new NotFoundException(`User #${id} not found`);
     }
-    return this.usersRepository.remove(userToRemove);
+    this.usersRepository.remove(userToRemove);
+    return;
   }
 }

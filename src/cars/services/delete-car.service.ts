@@ -17,7 +17,8 @@ export class DeleteCarsService {
     if (!carToRemove) {
       throw new NotFoundException(`Car #${id} not found`);
     }
-    return this.carsRepository.remove(carToRemove);
+    this.carsRepository.remove(carToRemove);
+    return;
   };
 
 };
