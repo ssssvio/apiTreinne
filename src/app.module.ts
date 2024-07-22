@@ -3,6 +3,7 @@ import { CarsModule } from './cars/cars.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfig } from './config/typeorm.factory';
 import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { ConfigModule } from '@nestjs/config';
     TypeOrmModule.forRootAsync({
       useClass: TypeOrmConfig
     }),
-    CarsModule
+    CarsModule,
+    UsersModule
   ],
   controllers: [],
   providers: [],
