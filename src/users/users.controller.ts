@@ -13,13 +13,12 @@ export class UsersController {
     private readonly createUserService: CreateUsersService,
     private readonly deleteUserService: DeleteUsersService,
     private readonly findUserService: FindUsersService,
-    private readonly findUsersService: FindUsersService,
     private readonly updateUserService: UpdateUsersService,
   ) { }
 
   @Get()
   async findAll() {
-    return this.findUsersService.findAll();
+    return this.findUserService.findAll();
   }
 
   @Get(':id')

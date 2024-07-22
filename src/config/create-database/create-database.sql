@@ -10,3 +10,10 @@ CREATE TABLE cars (
     mileage INT NOT NULL,
     rented BIT NOT NULL
 );
+
+CREATE TABLE users (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    name NVARCHAR(255) NOT NULL,
+    email NVARCHAR(255) NOT NULL,
+    password NVARCHAR(255) NOT NULL,
+);

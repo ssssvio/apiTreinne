@@ -9,4 +9,4 @@ export class CreateUserDTO {
 
   @IsString()
   readonly password: string;
-}
+};

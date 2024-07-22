@@ -5,4 +5,4 @@ import { CreateUserDTO } from './create-user';
 export class UpdateCarDTO extends PartialType(CreateUserDTO) {
   @IsNumber()
   readonly id: number;
-}
+};
