@@ -1,7 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Cars } from '../entities/cars.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CreateCarDTO } from '../dto/create-car';
 
 @Injectable()
 export class CreateCarsService {
@@ -10,7 +11,7 @@ export class CreateCarsService {
     private readonly carsRepository: Repository<Cars>,
   ) { };
 
-  async create(CreateCarDTO: any) {
+  async create(CreateCarDTO: CreateCarDTO) {
     const newCar = this.carsRepository.create(CreateCarDTO);
     return this.carsRepository.save(newCar);
   };

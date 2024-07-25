@@ -5,7 +5,8 @@ import { FindUsersService } from './services/find-users.service';
 import { UpdateUsersService } from './services/update-user.service';
 
 import { CreateUserDTO } from './dto/create-user';
-import { UpdateUsersDTO } from 'src/cars/dto/update-car';
+import { UpdateUserDTO } from './dto/update-user';
+
 
 @Controller('users')
 export class UsersController {
@@ -32,7 +33,7 @@ export class UsersController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: number, @Body() updateUserDTO: UpdateUsersDTO) {
+  async update(@Param('id') id: number, @Body() updateUserDTO: UpdateUserDTO) {
     return this.updateUserService.update(id, updateUserDTO);
   }
 

@@ -32,6 +32,7 @@ export class UpdateCarsService {
     if (!carToUpdate) {
       throw new NotFoundException(`Car #${id} not found`);
     }
+
     this.carsRepository.save(carToUpdate);
     return;
   };
