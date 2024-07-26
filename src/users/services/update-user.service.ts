@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from '../entities/users.entity';
 import { Repository } from 'typeorm';
 import { FindUsersService } from './find-users.service';
-import { UpdateUserDTO } from '../dto/update-user';
+import { UserDTO } from '../dto/user-dto';
 
 @Injectable()
 export class UpdateUsersService {
@@ -13,7 +13,7 @@ export class UpdateUsersService {
     private readonly findUserService: FindUsersService,
   ) { }
 
-  async update(id: number, updateUserDTO: UpdateUserDTO) {
+  async update(id: number, updateUserDTO: UserDTO) {
     const user = await this.findUserService.findOne(id);
     if (!user) {
       throw new NotFoundException(`User #${id} not found`);
