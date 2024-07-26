@@ -1,20 +1,28 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-// import { User } from '../users/user.entity'; // Ajuste o caminho conforme necessário
+import * as bcrypt from 'bcrypt';
+import { FindUsersService } from 'src/users/services/find-users.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly jwtService: JwtService) { }
+  constructor(
+    private readonly jwtService: JwtService,
+    private readonly findUserService: FindUsersService,
+  ) { }
 
-  async login(user: any) {
-    const payload = { username: user.username, sub: user.userId };
+  async login(email: string, password: string) {
+    const user = await this.findUserService.findOneByEmail(email);
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      throw new UnauthorizedException('Invalid credentials!');
+    }
+
+    const payload = { email: user.email, sub: user.id };
     return {
       access_token: this.jwtService.sign(payload),
     };
   }
 
   async validateUser(payload: any): Promise<any> {
-    // Aqui você pode adicionar lógica para validar o usuário
-    return { userId: payload.sub, username: payload.username };
+    return { userId: payload.sub, email: payload.email };
   }
 }

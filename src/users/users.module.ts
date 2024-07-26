@@ -16,6 +16,7 @@ import { FindUsersService } from './services/find-users.service';
     UpdateUsersService,
     FindUsersService
   ],
+  exports: [FindUsersService],
 })
 export class UsersModule { }
 
