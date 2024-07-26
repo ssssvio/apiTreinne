@@ -8,6 +8,7 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
   UsePipes,
 } from '@nestjs/common';
 
@@ -17,6 +18,7 @@ import { FindCarsService } from './services/find-car.service';
 import { DeleteCarsService } from './services/delete-car.service';
 import { UpdateCarsService } from './services/update-car.service';
 import { TrimPipe } from 'src/common/pipes/trim-pipes';
+import { JwtAuthGuard } from 'src/common/auth/jwt-auth.guard';
 @Controller('cars')
 export class CarsController {
   constructor(
@@ -26,16 +28,19 @@ export class CarsController {
     private readonly updateCarsService: UpdateCarsService,
   ) { }
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {
     return this.findCarsService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(@Param('id') id: number) {
     return this.findCarsService.findOne(id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   @UsePipes(TrimPipe)
   create(@Body() car: CarDTO) {
@@ -43,12 +48,14 @@ export class CarsController {
     return car;
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put(':id')
   @UsePipes(TrimPipe)
   updade(@Param('id') id: number, @Body() car: CarDTO) {
     return this.updateCarsService.update(id, car);
   }
 
+  @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')
   remove(@Param('id') id: number) {
