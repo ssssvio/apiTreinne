@@ -11,8 +11,8 @@ export class CreateCarsService {
     private readonly carsRepository: Repository<Cars>,
   ) { };
 
-  async create(carDTO: CarDTO) {
-    const newCar = this.carsRepository.create(carDTO);
+  async create(createCarDTO: CarDTO) {
+    const newCar = this.carsRepository.create(createCarDTO);
     return this.carsRepository.save(newCar);
   };
 

@@ -4,9 +4,7 @@ import { DeleteUsersService } from './services/delete-users.service';
 import { FindUsersService } from './services/find-users.service';
 import { UpdateUsersService } from './services/update-user.service';
 
-import { CreateUserDTO } from './dto/create-user';
-import { UpdateUserDTO } from './dto/update-user';
-
+import { UserDTO } from './dto/user-dto';
 
 @Controller('users')
 export class UsersController {
@@ -28,12 +26,12 @@ export class UsersController {
   }
 
   @Post()
-  async create(@Body() createUserDTO: CreateUserDTO) {
+  async create(@Body() createUserDTO: UserDTO) {
     return this.createUserService.create(createUserDTO);
   }
 
   @Put(':id')
-  async update(@Param('id') id: number, @Body() updateUserDTO: UpdateUserDTO) {
+  async update(@Param('id') id: number, @Body() updateUserDTO: UserDTO) {
     return this.updateUserService.update(id, updateUserDTO);
   }
 

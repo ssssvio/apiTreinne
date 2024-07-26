@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Users } from '../entities/users.entity';
-import { CreateUserDTO } from '../dto/create-user';
+import { UserDTO } from '../dto/user-dto';
 import { FindUsersService } from './find-users.service';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class CreateUsersService {
     private readonly findUserService: FindUsersService,
   ) { }
 
-  async create(createUserDTO: CreateUserDTO) {
+  async create(createUserDTO: UserDTO) {
 
     const user = await this.findUserService.findOneByEmail(createUserDTO.email);
     if (user) {

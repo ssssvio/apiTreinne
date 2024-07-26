@@ -13,20 +13,20 @@ export class UpdateCarsService {
     private readonly findCarsService: FindCarsService,
   ) { }
 
-  async update(id: number, carDTO: CarDTO) {
+  async update(id: number, updateCarDTO: CarDTO) {
     const car = await this.findCarsService.findOne(id);
     if (!car) {
       throw new NotFoundException(`Car #${id} not found`);
     };
 
     const currentUserData = JSON.stringify(car);
-    const newUserData = JSON.stringify({ ...car, ...carDTO });
+    const newUserData = JSON.stringify({ ...car, ...updateCarDTO });
     if (currentUserData === newUserData) {
       return car;
     };
 
     const carToUpdate = await this.carsRepository.preload({
-      ...carDTO,
+      ...updateCarDTO,
       id,
     });
     if (!carToUpdate) {
