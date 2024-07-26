@@ -8,6 +8,7 @@ import {
   Param,
   Post,
   Put,
+  UsePipes,
 } from '@nestjs/common';
 
 import { CarDTO } from './dto/car-dto';
@@ -15,6 +16,7 @@ import { CreateCarsService } from './services/create-car.service';
 import { FindCarsService } from './services/find-car.service';
 import { DeleteCarsService } from './services/delete-car.service';
 import { UpdateCarsService } from './services/update-car.service';
+import { TrimPipe } from 'src/common/pipes/trim-pipes';
 @Controller('cars')
 export class CarsController {
   constructor(
@@ -35,12 +37,14 @@ export class CarsController {
   }
 
   @Post()
+  @UsePipes(TrimPipe)
   create(@Body() car: CarDTO) {
     this.createCarsService.create(car);
     return car;
   }
 
   @Put(':id')
+  @UsePipes(TrimPipe)
   updade(@Param('id') id: number, @Body() car: CarDTO) {
     return this.updateCarsService.update(id, car);
   }

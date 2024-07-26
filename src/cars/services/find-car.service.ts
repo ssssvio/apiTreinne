@@ -15,11 +15,14 @@ export class FindCarsService {
   };
 
   async findOne(id: number) {
+    if (!id) {
+      throw new NotFoundException('Please provide a valid ID!');
+    }
     const car = await this.carsRepository.findOne({ where: { id } });
     if (!car) {
-      throw new NotFoundException(`Car #${id} not found`);
+      throw new NotFoundException(`Car /${id} not found!`);
     }
     return car;
   };
 
-};
+}

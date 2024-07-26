@@ -22,7 +22,7 @@ export class CreateUsersService {
 
     const newUser = this.usersRepository.create(createUserDTO);
     const savedUser = await this.usersRepository.save(newUser);
-    const { password, ...result } = savedUser;
+    const { password, id, ...result } = savedUser;
 
     return result;
   }
