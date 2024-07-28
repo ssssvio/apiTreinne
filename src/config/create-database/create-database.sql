@@ -7,8 +7,8 @@ CREATE TABLE cars (
     name NVARCHAR(255) NOT NULL,
     brand NVARCHAR(255) NOT NULL,
     year INT NOT NULL,
+    color NVARCHAR(255) NOT NULL,
     price DECIMAL(18,2) NOT NULL,
-    mileage INT NOT NULL,
     rented BIT NOT NULL
 );
 

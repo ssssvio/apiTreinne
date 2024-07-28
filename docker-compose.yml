@@ -8,12 +8,25 @@ services:
     restart: always
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=Java70script@
+      - SA_PASSWORD=${DB_PASSWORD}
     ports:
       - '1433:1433'
     volumes:
       - ./src/config/create-database/create-database.sql:/docker-entrypoint-initdb.d/create-database.sql
       - sqlvolume:/var/opt/mssql
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: locavia-api
+    restart: always
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    env_file:
+      - .env
 
 volumes:
   sqlvolume:
