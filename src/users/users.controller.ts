@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, UsePipes, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, UsePipes, UseGuards, HttpCode, HttpStatus } from '@nestjs/common';
 import { CreateUsersService } from './services/create-user.service';
 import { DeleteUsersService } from './services/delete-users.service';
 import { FindUsersService } from './services/find-users.service';
@@ -17,16 +17,16 @@ export class UsersController {
     private readonly updateUserService: UpdateUsersService,
   ) { }
 
-  @UseGuards(JwtAuthGuard)
   @Get()
+  @UseGuards(JwtAuthGuard)
   async findAll() {
     return this.findUserService.findAll();
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get(':id')
-  async findOne(@Param('id') id: number) {
-    return this.findUserService.findOne(id);
+  @UseGuards(JwtAuthGuard)
+  async findOneUnique(@Param('id') id: number) {
+    return this.findUserService.findOneUnique(id);
   }
 
   @Post()
@@ -35,15 +35,17 @@ export class UsersController {
     return this.createUserService.create(createUserDTO);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Put(':id')
   @UsePipes(TrimPipe)
+  @UseGuards(JwtAuthGuard)
+  @HttpCode(HttpStatus.NO_CONTENT)
   async update(@Param('id') id: number, @Body() updateUserDTO: UserDTO) {
     return this.updateUserService.update(id, updateUserDTO);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
+  @HttpCode(HttpStatus.NO_CONTENT)
   async remove(@Param('id') id: number) {
     return this.deleteUserService.remove(id);
   }

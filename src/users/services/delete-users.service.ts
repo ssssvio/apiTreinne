@@ -15,7 +15,7 @@ export class DeleteUsersService {
   async remove(id: number) {
     const userToRemove = await this.findUserService.findOne(id);
     if (!userToRemove) {
-      throw new NotFoundException(`User #${id} not found`);
+      throw new NotFoundException(`User #${id} not found!`);
     }
     this.usersRepository.remove(userToRemove);
     return;

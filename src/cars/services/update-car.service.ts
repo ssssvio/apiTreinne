@@ -22,7 +22,7 @@ export class UpdateCarsService {
     const currentUserData = JSON.stringify(car);
     const newUserData = JSON.stringify({ ...car, ...updateCarDTO });
     if (currentUserData === newUserData) {
-      return car;
+      return;
     };
 
     const carToUpdate = await this.carsRepository.preload({
@@ -35,6 +35,6 @@ export class UpdateCarsService {
 
     this.carsRepository.save(carToUpdate);
     return;
-  };
+  }
 
 };

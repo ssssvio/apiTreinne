@@ -16,13 +16,20 @@ export class UpdateUsersService {
   async update(id: number, updateUserDTO: UserDTO) {
     const user = await this.findUserService.findOne(id);
     if (!user) {
-      throw new NotFoundException(`User #${id} not found`);
+      throw new NotFoundException(`User #${id} not found!`);
     }
 
     const currentUserData = JSON.stringify(user);
     const newUserData = JSON.stringify({ ...user, ...updateUserDTO });
     if (currentUserData === newUserData) {
-      return user;
+      return;
+    }
+
+    if (updateUserDTO.email) {
+      const userWithSameEmail = await this.findUserService.findOneByEmail(updateUserDTO.email);
+      if (userWithSameEmail && userWithSameEmail.id !== id) {
+        throw new NotFoundException(`User with email ${updateUserDTO.email} already exists`);
+      }
     }
 
     const userToUpdate = await this.usersRepository.preload({
@@ -32,6 +39,7 @@ export class UpdateUsersService {
     if (!userToUpdate) {
       throw new NotFoundException(`User #${id} not found`);
     }
+
     this.usersRepository.save(userToUpdate);
     return;
   }

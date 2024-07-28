@@ -30,6 +30,14 @@ export class FindUsersService {
     return user;
   }
 
+  async findOneUnique(id: number) {
+    const { password, ...user } = await this.usersRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new NotFoundException(`User #${id} not found`);
+    }
+    return user;
+  }
+
   async findOneByEmail(email: string) {
     const user = await this.usersRepository.findOne({ where: { email } });
     return user;

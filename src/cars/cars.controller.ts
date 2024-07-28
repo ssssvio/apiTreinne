@@ -28,36 +28,37 @@ export class CarsController {
     private readonly updateCarsService: UpdateCarsService,
   ) { }
 
-  @UseGuards(JwtAuthGuard)
   @Get()
+  @UseGuards(JwtAuthGuard)
   findAll() {
     return this.findCarsService.findAll();
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   findOne(@Param('id') id: number) {
     return this.findCarsService.findOne(id);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Post()
   @UsePipes(TrimPipe)
+  @UseGuards(JwtAuthGuard)
   create(@Body() car: CarDTO) {
     this.createCarsService.create(car);
     return car;
   }
 
-  @UseGuards(JwtAuthGuard)
   @Put(':id')
   @UsePipes(TrimPipe)
+  @UseGuards(JwtAuthGuard)
+  @HttpCode(HttpStatus.NO_CONTENT)
   updade(@Param('id') id: number, @Body() car: CarDTO) {
     return this.updateCarsService.update(id, car);
   }
 
+  @Delete(':id')
   @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.NO_CONTENT)
-  @Delete(':id')
   remove(@Param('id') id: number) {
     return this.deleteCarsService.remove(id);
   }
