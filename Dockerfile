@@ -1,4 +1,5 @@
-FROM node:14-alpine
+# Use a imagem Node.js mais recente com suporte a ECMAScript 2021
+FROM node:18-alpine
 
 WORKDIR /usr/src/app
 
