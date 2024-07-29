@@ -2,6 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcryptjs from 'bcryptjs';
 import { FindUsersService } from 'src/users/services/find-users.service';
+import { LoginDto } from './dto/login-dto';
 
 @Injectable()
 export class AuthService {
@@ -10,7 +11,9 @@ export class AuthService {
     private readonly findUserService: FindUsersService,
   ) { }
 
-  async login(email: string, password: string) {
+  async login(loginDto: LoginDto) {
+    const { email, password } = loginDto;
+
     const user = await this.findUserService.findOneByEmail(email);
     if (!user || !(await bcryptjs.compare(password, user.password))) {
       throw new UnauthorizedException('Invalid credentials!');
