@@ -20,4 +20,4 @@ export class DeleteUsersService {
     this.usersRepository.remove(userToRemove);
     return;
   };
-}
+};

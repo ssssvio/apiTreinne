@@ -41,6 +41,5 @@ export class UpdateUsersService {
 
     this.usersRepository.save(userToUpdate);
     return;
-  }
-
-}
+  };
+};

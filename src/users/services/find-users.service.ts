@@ -43,4 +43,4 @@ export class FindUsersService {
     const user = await this.usersRepository.findOne({ where: { email } });
     return user;
   };
-}
+};

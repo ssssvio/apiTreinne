@@ -33,4 +33,4 @@ export class CreateUsersService {
 
     return result;
   };
-}
+};
