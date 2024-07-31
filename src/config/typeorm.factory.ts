@@ -23,5 +23,5 @@ export class TypeOrmConfig implements TypeOrmOptionsFactory {
         trustServerCertificate: true,
       },
     };
-  }
-}
+  };
+};
