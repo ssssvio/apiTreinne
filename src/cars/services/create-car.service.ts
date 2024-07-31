@@ -8,12 +8,11 @@ import { CarDTO } from '../dto/car-dto';
 export class CreateCarsService {
   constructor(
     @InjectRepository(Cars)
-    private readonly carsRepository: Repository<Cars>,
-  ) { };
+    private readonly carsRepository: Repository<Cars>
+  ) { }
 
   async create(createCarDTO: CarDTO) {
     const newCar = this.carsRepository.create(createCarDTO);
     return this.carsRepository.save(newCar);
   };
-
 };

@@ -16,9 +16,9 @@ export class DeleteCarsService {
     const carToRemove = await this.findCarsService.findOne(id);
     if (!carToRemove) {
       throw new NotFoundException(`Car #${id} not found`);
-    }
+    };
+
     this.carsRepository.remove(carToRemove);
     return;
   };
-
 };

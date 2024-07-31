@@ -16,7 +16,7 @@ export class UpdateCarsService {
   async update(id: number, updateCarDTO: CarDTO) {
     const car = await this.findCarsService.findOne(id);
     if (!car) {
-      throw new NotFoundException(`Car #${id} not found`);
+      throw new NotFoundException(`Car #${id} not found!`);
     };
 
     const currentUserData = JSON.stringify(car);
@@ -35,6 +35,5 @@ export class UpdateCarsService {
 
     this.carsRepository.save(carToUpdate);
     return;
-  }
-
+  };
 };

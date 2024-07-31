@@ -11,7 +11,11 @@ export class FindCarsService {
   ) { }
 
   async findAll() {
-    return this.carsRepository.find();
+    const allCars = await this.carsRepository.find();
+    if (!allCars.length) {
+      throw new NotFoundException('No cars found!');
+    }
+    return allCars;
   };
 
   async findOne(id: number) {
@@ -24,5 +28,4 @@ export class FindCarsService {
     }
     return car;
   };
-
-}
+};
