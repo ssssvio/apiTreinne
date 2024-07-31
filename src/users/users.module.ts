@@ -19,5 +19,3 @@ import { FindUsersService } from './services/find-users.service';
   exports: [FindUsersService],
 })
 export class UsersModule { }
-
-

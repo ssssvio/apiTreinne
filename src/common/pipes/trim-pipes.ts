@@ -1,5 +1,4 @@
 import { PipeTransform, Injectable, ArgumentMetadata } from '@nestjs/common';
-
 @Injectable()
 export class TrimPipe implements PipeTransform {
   transform(value: any, metadata: ArgumentMetadata) {
@@ -14,5 +13,5 @@ export class TrimPipe implements PipeTransform {
       }
     }
     return value;
-  }
+  };
 }

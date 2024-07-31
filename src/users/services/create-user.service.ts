@@ -18,7 +18,7 @@ export class CreateUsersService {
 
     const user = await this.findUserService.findOneByEmail(createUserDTO.email);
     if (user) {
-      throw new NotFoundException(`User with email ${createUserDTO.email} already exists.`);
+      throw new NotFoundException(`User with email ${createUserDTO.email} already exists!`);
     };
 
     const hashedPassword = await bcryptjs.hash(createUserDTO.password, 10);
@@ -26,11 +26,11 @@ export class CreateUsersService {
     const newUser = this.usersRepository.create({
       ...createUserDTO,
       password: hashedPassword,
-    });
+    })
 
     const savedUser = await this.usersRepository.save(newUser);
     const { password, id, ...result } = savedUser;
 
     return result;
-  }
+  };
 }

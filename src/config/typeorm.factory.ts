@@ -1,13 +1,11 @@
 import 'dotenv/config';
 import { TypeOrmOptionsFactory, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { Cars } from 'src/cars/entities/cars.entity';
 import { Users } from 'src/users/entities/users.entity';
 
 @Injectable()
 export class TypeOrmConfig implements TypeOrmOptionsFactory {
-  constructor(private configService: ConfigService) { }
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
       type: 'mssql',

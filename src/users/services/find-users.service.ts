@@ -13,33 +13,34 @@ export class FindUsersService {
   async findAll() {
     const users = await this.usersRepository.find();
     if (!users.length) {
-      throw new NotFoundException('No users found');
-    }
+      throw new NotFoundException('No users found!');
+    };
+
     const usersWithoutPassword = users.map(user => {
       const { password, ...rest } = user;
       return rest;
-    });
+    })
     return usersWithoutPassword;
-  }
+  };
 
   async findOne(id: number) {
     const user = await this.usersRepository.findOne({ where: { id } });
     if (!user) {
-      throw new NotFoundException(`User #${id} not found`);
+      throw new NotFoundException(`User #${id} not found!`);
     }
     return user;
-  }
+  };
 
   async findOneUnique(id: number) {
     const { password, ...user } = await this.usersRepository.findOne({ where: { id } });
     if (!user) {
-      throw new NotFoundException(`User #${id} not found`);
+      throw new NotFoundException(`User #${id} not found!`);
     }
     return user;
-  }
+  };
 
   async findOneByEmail(email: string) {
     const user = await this.usersRepository.findOne({ where: { email } });
     return user;
-  }
+  };
 }
