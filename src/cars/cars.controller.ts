@@ -37,7 +37,7 @@ export class CarsController {
   @ApiResponse({ status: 200, description: 'List of cars', type: [CarDTO] })
   findAll() {
     return this.findCarsService.findAll();
-  }
+  };
 
   @Get(':id')
   @UseGuards(JwtAuthGuard)
@@ -46,7 +46,7 @@ export class CarsController {
   @ApiParam({ name: 'id', description: 'Car ID', type: Number })
   findOne(@Param('id') id: number) {
     return this.findCarsService.findOne(id);
-  }
+  };
 
   @Post()
   @UsePipes(TrimPipe)
@@ -57,7 +57,7 @@ export class CarsController {
   create(@Body() car: CarDTO) {
     this.createCarsService.create(car);
     return car;
-  }
+  };
 
   @Put(':id')
   @UsePipes(TrimPipe)
@@ -69,7 +69,7 @@ export class CarsController {
   @ApiBody({ type: CarDTO })
   update(@Param('id') id: number, @Body() car: CarDTO) {
     return this.updateCarsService.update(id, car);
-  }
+  };
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
@@ -79,5 +79,5 @@ export class CarsController {
   @ApiParam({ name: 'id', description: 'Car ID', type: Number })
   remove(@Param('id') id: number) {
     return this.deleteCarsService.remove(id);
-  }
-}
+  };
+};
