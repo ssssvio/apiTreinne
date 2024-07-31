@@ -31,4 +31,4 @@ export class CarDTO {
   @IsNotEmpty()
   @IsBoolean()
   readonly rented: boolean;
-}
+};

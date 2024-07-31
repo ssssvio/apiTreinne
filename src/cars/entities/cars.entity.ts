@@ -22,4 +22,4 @@ export class Cars {
 
   @Column({ default: false })
   rented: boolean;
-}
+};
