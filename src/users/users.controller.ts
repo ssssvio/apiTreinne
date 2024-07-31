@@ -66,4 +66,4 @@ export class UsersController {
   async remove(@Param('id') id: number) {
     return this.deleteUserService.remove(id);
   };
-}
+};
