@@ -14,5 +14,5 @@ export class AuthController {
   @ApiBody({ type: LoginDto })
   login(@Body() loginDto: LoginDto) {
     return this.authService.login(loginDto);
-  }
-}
+  };
+};
