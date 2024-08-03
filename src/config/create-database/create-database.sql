@@ -1,7 +1,7 @@
-CREATE DATABASE car_rental_db;
+CREATE DATABASE carrentaldb;
 GO
 
-USE car_rental_db;
+USE carrentaldb;
 GO
 
 CREATE TABLE cars (

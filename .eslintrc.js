@@ -28,7 +28,6 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
-    // Desativar a regra de espaçamento de chaves do ESLint que conflita com o Prettier
     'object-curly-spacing': 'off',
   },
 };
