@@ -32,10 +32,11 @@ export class FindUsersService {
   };
 
   async findOneUnique(id: number) {
-    const { password, ...user } = await this.usersRepository.findOne({ where: { id } });
-    if (!user) {
+    const findOneUser = await this.usersRepository.findOne({ where: { id } });
+    if (!findOneUser) {
       throw new NotFoundException(`User #${id} not found!`);
     }
+    const { password, ...user } = findOneUser;
     return user;
   };
 
