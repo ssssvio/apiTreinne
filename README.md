@@ -95,7 +95,7 @@ installed on your machine:
 clone the repository to your local environment:
 
 ```bash git clone
-  git@github.com:ssssvio/carRentalApi.git
+  git pull git@github.com:ssssvio/carRentalApi.git
   cd carRentalApi
 ```
 
