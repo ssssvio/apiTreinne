@@ -17,7 +17,7 @@ services:
     container_name: car-rental-tools
     depends_on:
       - sqlserver
-    entrypoint: ["/bin/bash", "-c", "sleep 30s && /opt/mssql-tools/bin/sqlcmd -S sqlserver -U SA -P 4SQLConec+tion@ -i /tmp/create-database.sql || exit 1"]
+    entrypoint: ["/bin/bash", "-c", "sleep 30s && /opt/mssql-tools/bin/sqlcmd -S sqlserver -U SA -P 4DbConec+tion@ -i /tmp/create-database.sql || exit 1"]
     volumes:
       - ./src/config/create-database/create-database.sql:/tmp/create-database.sql
 

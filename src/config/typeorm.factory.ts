@@ -17,8 +17,8 @@ export class TypeOrmConfig implements TypeOrmOptionsFactory {
       synchronize: true,
       logging: true,
       entities: [Cars, Users],
-      retryAttempts: 2,
-      retryDelay: 120000,
+      retryAttempts: 10,
+      retryDelay: 60000,
       migrations: [__dirname + '/migrations/*{.ts,.js}'],
       subscribers: [],
       extra: {
