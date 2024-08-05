@@ -211,7 +211,7 @@ After the execution is complete, the API will be available within 5-7 minutes at
 - If you want to download the image directly from Docker Hub:
 
   ```bash
-  docker pull seu-usuario/locavia-api:latest
+  docker pull ssavio/car-rental-api
   ```
 
 - For contributions and suggestions, feel free to open an issue or submit a pull request.
